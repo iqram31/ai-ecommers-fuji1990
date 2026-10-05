@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-paper: #f6f4ef;
+  --color-sand: #ebe7de;
+  --color-ink: #141414;
+  --color-muted: #6b665d;
+  --color-line: #dcd7cc;
+  --color-fuji: #be1e2d;
+  --color-fuji-dark: #9c1623;
+  --color-olive: #4a5138;
+  --color-whatsapp: #128c4a;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bebas), "Arial Narrow", sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-fuji);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 px-5 text-sm font-semibold tracking-wide transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-ink text-paper hover:bg-fuji;
+  }
+  .btn-outline {
+    @apply border border-ink text-ink hover:bg-ink hover:text-paper;
+  }
+  .btn-whatsapp {
+    @apply bg-whatsapp text-white hover:brightness-110;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-fuji;
+  }
+  .heading {
+    @apply font-display text-4xl leading-none tracking-wide sm:text-5xl;
+  }
+  .input {
+    @apply block min-h-11 w-full border border-line bg-white px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:border-ink focus:outline-none;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
