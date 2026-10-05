@@ -59,10 +59,10 @@ Buka <http://localhost:3000>. Panel admin ada di <http://localhost:3000/admin>.
 ## Deploy ke Vercel
 
 1. Buat project di [Supabase](https://supabase.com), salin connection string dan API key.
-2. Dari komputer lokal (dengan `.env` terisi): `npm run db:migrate`, `npm run db:seed`, `npm run setup`.
-3. Import repository ini di [Vercel](https://vercel.com/new).
-4. Isi Environment Variables di Vercel (semua variabel di atas kecuali `ADMIN_EMAIL`/`ADMIN_PASSWORD`).
-5. Deploy. Setiap ada migrasi baru, jalankan `npm run db:migrate` sebelum deploy.
+2. Import repository ini di [Vercel](https://vercel.com/new).
+3. Isi Environment Variables di Vercel (semua variabel di atas kecuali `ADMIN_EMAIL`/`ADMIN_PASSWORD`).
+4. Deploy. Build di Vercel otomatis menerapkan migrasi database, dan mengisi data awal bila database masih kosong.
+5. Dari komputer lokal (dengan `.env` terisi), jalankan `npm run setup` sekali untuk membuat bucket storage dan akun admin.
 
 Disarankan: di Supabase → Authentication → Sign In / Providers, **matikan "Allow new users to sign up"**.
 (Pendaftar baru tetap tidak bisa masuk admin karena tidak punya role `admin`, tapi lebih rapi dimatikan.)

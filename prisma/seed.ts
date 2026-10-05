@@ -7,6 +7,13 @@ import { seedBanners, seedCategories, seedPages, seedProducts, seedSettings } fr
 const prisma = new PrismaClient();
 
 async function main() {
+  // Saat build di Vercel: hanya isi database yang benar-benar baru, supaya data
+  // yang sudah dihapus admin tidak muncul lagi di setiap deploy.
+  if (process.env.SEED_ONLY_IF_EMPTY && (await prisma.siteSetting.count()) > 0) {
+    console.log("Database sudah berisi data, seed dilewati.");
+    return;
+  }
+
   await prisma.siteSetting.upsert({ where: { id: 1 }, update: {}, create: { id: 1, ...seedSettings } });
 
   for (const category of seedCategories) {
